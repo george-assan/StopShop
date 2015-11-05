@@ -1,0 +1,61 @@
+ <!DOCTYPE html>
+  <html>
+    <head>
+
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      <script src="js/jquery-2.1.4.js"></script>
+        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+      <script src="js/pos.js"></script>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+   
+    <body>
+     
+    
+         <nav>
+    <ul id="slide-out" class="side-nav">
+    <li><a href="inventory.html">Inventory</a></li>
+    <li><a href="sales.html">Sales</a></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+</nav>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Enter Product Name" id="product_name" type="text" class="validate">
+          <label for="product_name">Product Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Enter Product Name" id="product_price" type="text" class="validate">
+          <label for="product_price">Price</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Enter Product Name" id="product_quantity" type="text" class="validate">
+          <label for="product_quantity">Quantity</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Type barcode here or use scanner " id="product_barcode" type="text" class="validate">
+          <label for="product_barcode">Barcode</label>
+        </div>
+      </div>
+      <div class="row">
+      <a class="waves-effect waves-light btn">Scan</a>
+  </div>
+  <div class="row">
+      <a class="waves-effect waves-light btn" onclick="addProduct()">Add to inventory</a>
+      <a class="waves-effect waves-light btn" onClick="window.location.href='index.html'">Cancel</a>
+  </div>
+    </form>
+  </div>
+    </body>
+  </html>
+        

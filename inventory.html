@@ -1,0 +1,118 @@
+ <!DOCTYPE html>
+  <html>
+    <head>
+
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      <script src="js/jquery-2.1.4.js"></script>
+      <script src="js/pos.js"></script>
+       <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    
+    <body>
+      <script>
+            function sendRequest ( u )
+           {
+               var obj = $.ajax({url:u,async:false});
+                var result=$.parseJSON(obj.responseText);
+                return result;
+           }//end of sendrequest
+
+
+        
+         $ ( document ).ready ( function ( )
+            {
+               
+         var url = "php/user_controller.php?cmd=1";
+               var obj = sendRequest ( url );
+      
+        
+                if ( obj.result === 1 )
+                {
+             
+          var i = 0;
+          var panels ="";
+          
+          for ( ; i < obj.products.length; i++ )
+                    {
+          panels += "<div class='row'><div class='col s12'><div class='card'><div class='card-content'><p><b>Product: </b>"+obj.products[i].productname+"</p><p><b>Price: </b>"+obj.products[i].unitprice+"</p><p><b>Quantity: </b>"+obj.products[i].quantity+"</p></div><div class='card-action'><a class='waves-effect waves-light btn modal-trigger' href='#modal1' onClick='loadprice("+obj.products[i].barcode+")'><span style='color:white'>Update price</span></a></div></div></div></div>";
+          }
+          
+           $ ( ".display" ).html (panels);
+         }
+         else{
+          
+         
+         }
+      });
+
+         function loadprice(barcode){
+
+            var url = "php/user_controller.php?cmd=8&barcode="+barcode;
+               var obj = sendRequest ( url );
+               if ( obj.result === 1 )
+                {
+                  var elem1 = document.getElementById("barcodemodal");
+                  var elem = document.getElementById("newprice");
+                  elem1.value = ""+obj.price[0].barcode;
+                  elem.value = ""+obj.price[0].unitprice;
+                }
+
+      
+         }
+
+
+
+        // Initialize collapse button
+        $(document).ready(function(){
+   $(".button-collapse").sideNav();
+   $('.modal-trigger').leanModal();
+});
+  // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+  //$('.collapsible').collapsible();
+
+      </script>
+     <div class="navbar-fixed">
+        <nav>
+    <ul id="slide-out" class="side-nav">
+    <li><a href="inventory.html">Inventory</a></li>
+    <li><a href="sales.html">Sales</a></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+  </nav>
+  </div>
+  
+
+    <div class="display">
+   
+    </div>
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red" onClick="window.location.href='addproduct.html'">
+      <i class="material-icons">add</i>
+    </a>
+  </div>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+    </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input disabled value="" id="barcodemodal" type="text" class="validate">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <div>Price: </div>
+          <input id="newprice" type="text" class="validate">
+        </div>
+      </div>
+    <div class="modal-footer">
+      <a href="#!" onclick="updatePrice()" class=" modal-action modal-close waves-effect waves-green btn-flat">Update</a>
+    </div>
+  </div>
+    </body>
+  </html>
+        

@@ -1,0 +1,86 @@
+ <!DOCTYPE html>
+  <html>
+    <head>
+
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      <script src="js/jquery-2.1.4.js"></script>
+        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+      <script src="js/pos.js"></script>
+      <script src="cordova.js"></script>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <script>
+          function scan(){
+       cordova.plugins.barcodeScanner.scan(
+      function (result) {
+       var barcode = document.getElementById("barcodet");
+         barcode.value= ""+ result.text; 
+      }, 
+      function (error) {
+          alert("Scanning failed: " + error);
+      }
+   );
+}
+
+    </script>
+    <body>
+     
+    <div class="navbar-fixed">
+         <nav class="orange darken-3">
+          <a href="#" class="brand-logo center"><img src="images/logo.png" width="200px" ></a>
+    <ul id="slide-out" class="side-nav">
+    <li><a href="tellerview.html">Make transaction</a></li>
+    <li><a href="sales.html">Sales</a></li>
+  
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+</nav>
+</div>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <span>
+        <div class="input-field col s12">
+          <input placeholder="Enter Customer number" id="phonenum" type="text" class="validate">
+        </div>
+        </span>
+        <span class="input-field col s12 m6">
+          <input placeholder="Enter Barcode or scan" id="barcodet" type="text" class="validate">
+          <a class="waves-effect waves-light btn orange darken-3" onclick="scan()">Scan</a>
+        </span>
+         <span class="input-field col s12 m6">
+          <input placeholder="Enter Quantity" id="quantityt" type="text" class="validate">
+          <a class="waves-effect waves-light btn orange darken-3" onclick="addToCart()">Add to cart</a>
+        </span>
+
+      </div>
+      <div class="row">
+          <table>
+        <thead>
+          <tr>
+              <th data-field="name">Product Name</th>
+              <th data-field="price">Price</th>
+              <th data-field="quantity">Quantity</th>
+          </tr>
+        </thead>
+
+        <tbody class="collection">
+        
+        </tbody>
+      </table>
+      </div>
+    </form>
+
+  </div>
+      
+      <div class="totalLabel">
+      
+      </div>
+      <div class='row' style="height:100%">
+          <center><a class="waves-effect waves-light btn orange darken-3" style="width:80%;"onclick="recordSales()">Check out</a></center>
+       </div>
+    </body>
+  </html>
+        

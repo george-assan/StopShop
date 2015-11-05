@@ -1,0 +1,93 @@
+ <!DOCTYPE html>
+  <html>
+    <head>
+
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      <script src="js/jquery-2.1.4.js"></script>
+      <script src="js/pos.js"></script>
+       <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    
+    <body>
+      <script>
+           function sendRequest ( u )
+           {
+               var obj = $.ajax({url:u,async:false});
+                var result=$.parseJSON(obj.responseText);
+                return result;
+           }//end of sendrequest
+
+
+        
+         $ ( document ).ready ( function ( )
+            {
+               
+         var url = "http://cs.ashesi.edu.gh/~csashesi/class2016/george-assan/POS2/user_controller.php?cmd=3";
+               var obj = sendRequest ( url );
+      
+        
+                if ( obj.result === 1 )
+                {
+             
+          var i = 0;
+          var panels ="";
+          
+          for ( ; i < obj.sales.length; i++ )
+                    {
+          panels += "<div class='row'><div class='col s12'><div class='card'><div class='card-content'><p><b>Customer No.: </b>"+obj.sales[i].customernum+"</p><p><b>Expenditure: </b>GHS "+obj.sales[i].expenditure+"</p><p><b>Date & time: </b>"+obj.sales[i].datetime+"</p></div><div class='card-action'><a class='waves-effect waves-light btn modal-trigger orange darken-3' href='#modal2' onClick='loadSalesDetails("+obj.sales[i].transactionid+")'><span style='color:white'>Details</span></a></div></div></div></div>";
+          }
+          
+           $ ( ".salesdisplay" ).html (panels);
+         }
+         else{
+        
+         
+         }
+      });
+
+        // Initialize collapse button
+        $(document).ready(function(){
+   $(".button-collapse").sideNav();
+    $('.modal-trigger').leanModal();
+});
+  // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+  //$('.collapsible').collapsible();
+
+      </script>
+     <div class="navbar-fixed">
+        <nav class="orange darken-3">
+          <a href="#" class="brand-logo center"><img src="images/logo.png" width="200px" ></a>
+    <ul id="slide-out" class="side-nav">
+   <li><a href="tellerview.html">Make transaction</a></li>
+    <li><a href="sales.html">Sales</a></li>
+
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+</nav>
+</div>
+  <div class="salesdisplay">
+
+  </div>
+   <div id="modal2" class="modal bottom-sheet" style="max-height:70%; background-color:#ef6c00">
+    <div class="modal-content">
+        <div style="border-bottom:solid #ffffff;">
+        <h3 style="color:white; width: 100%;">Details</h3>
+        </div>
+       <div class="summary" style="width:100%; color:white">
+      
+  </div>
+  <div>
+      <ul class="collection" id="salesdetailsdisplay">
+      </ul>
+  </div>
+  </div>
+  <div class="modal-footer" id="modalfooter">
+      
+    </div>
+  </div>
+    </body>
+  </html>
+        
