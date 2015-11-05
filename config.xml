@@ -12,7 +12,7 @@
 				<author	href="http://www.ashesi.edu.gh"	email="george.assan93@gmail.com">	
 								George Assan	
 				</author>	
-	
+      <gap:plugin name="com.phonegap.plugins.barcodescanner" version="2.2.0" />	
       <gap:plugin name="cordova-plugin-whitelist" source="npm" />
       <allow-navigation href="data:*" />
       <allow-intent href="*" />
