@@ -1,4 +1,3 @@
-
 <?xml	version="1.0"	encoding="UTF-8"	?>	
     <widget	xmlns =	"http://www.w3.org/ns/widgets"	
             xmlns:gap = "http://phonegap.com/ns/1.0"	
@@ -8,12 +7,12 @@
 				<!--	versionCode	is	opIonal	and	Android	only	-->	
 				<name>ShopStop</name>	
 				<description>	
-								This is a point of sale application	
+								An point of sale application	
 				</description>	
 				<author	href="http://www.ashesi.edu.gh"	email="george.assan93@gmail.com">	
 								George Assan	
 				</author>	
-	<gap:plugin name="com.phonegap.plugins.barcodescanner" version="2.2.0" />
+	
       <gap:plugin name="cordova-plugin-whitelist" source="npm" />
       <allow-navigation href="data:*" />
       <allow-intent href="*" />
