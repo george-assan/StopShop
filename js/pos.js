@@ -56,13 +56,15 @@
            $ ( ".totalLabel" ).html("<h2 style='font-family:arial'><center>Total: "+totalAmount+"</center></h2>");
          }
          else{
-        
+        alert("Failed to retrieve product");
          
          }
 
         }
 
         function recordSales(){
+        
+        if(cartArrayForBarcode.length != 0){
           var boolVal = "false";
           var phoneNumber = encodeURI(document .getElementById("phonenum").value);
           if(totalAmount >= 500){
@@ -78,6 +80,10 @@
             else{
               alert("Transaction failed");      
             }
+        }
+        else{
+           alert("No barcode entered");      
+        }
             //location.reload(); 
 
         }
