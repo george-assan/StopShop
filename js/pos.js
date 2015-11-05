@@ -70,8 +70,14 @@
           }
            var url = "http://cs.ashesi.edu.gh/~csashesi/class2016/george-assan/POS2/user_controller.php?cmd=5&phonenum="+phoneNumber+"&amount="+totalAmount+"&bool="+boolVal;
             var obj = sendRequest ( url );
+            if(obj.result === 1){
             updateStock();
             resetTransactionInput();
+            alert("Transaction successful");
+            }
+            else{
+              alert("Transaction failed");      
+            }
             //location.reload(); 
 
         }
